@@ -49,7 +49,7 @@ func (p *MockApiImpl) PostTransaction(data request.PostTransactionRequest) (*res
 	return trx, nil
 }
 
-// GetAccountByAccountNumberAndBankShortCode implements PlatformAPI.
+// GetAccountByAccountNumberAndBankShortCode implements MockApi.
 func (p *MockApiImpl) GetAccountByAccountNumberAndBankShortCode(accountNumber string, bankShortCode string) (*response.Account, error) {
 	path := "/accounts"
 	params := []Param{
@@ -93,7 +93,7 @@ func readBody[T any](respBody []byte) (*T, error) {
 	return &result, nil
 }
 
-// closeBody implements PlatformAPI.
+// closeBody implements MockApi.
 func (*MockApiImpl) closeBody(body io.ReadCloser) {
 	err := body.Close()
 	if err != nil {
@@ -101,7 +101,7 @@ func (*MockApiImpl) closeBody(body io.ReadCloser) {
 	}
 }
 
-// request implements PlatformAPI
+// request implements MockApi
 func (p *MockApiImpl) request(path string, method string, body []byte, params []Param) (res *http.Response, err error) {
 	client := http.Client{}
 
