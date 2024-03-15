@@ -54,6 +54,7 @@ func (s *TransactionServiceImpl) PostDisbursement(params PostDisbursementParams)
 	}
 
 	bankTrx, err := s.MockApi.PostTransaction(mockapiRequest.PostTransactionRequest{
+		ReferenceID:   params.ReferenceID,
 		Type:          params.Type,
 		Amount:        params.Amount.InexactFloat64(),
 		AccountNumber: params.BankAccountNo,
